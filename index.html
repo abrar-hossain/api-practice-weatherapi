@@ -5,24 +5,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather</title>
+    <title>Temperature Hot</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(images/bg-image.jpg) no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- search input -->
-    <input type="text" id="input-field">
-    <button onclick="searchWeather()">Search</button>
-
-    <!-- notice box -->
-    <div id="error"></div>
-
-    <!-- search result -->
-    <div id="weather-info"></div>
-
-
-
-
+    <div class="container">
+        <div class="col-md-6 m-auto py-5">
+            <!-- search input -->
+            <div class="input-group mb-3">
+                <input id="input-field" type="text" class="form-control" placeholder="Enter a location for Weather ...">
+                <div class="input-group-append">
+                    <button onclick="searchWeather()" type="button" class="btn btn-danger">Search</button>
+                </div>
+            </div>
+            </div>
+            <!-- notice box -->
+            <div id="error"></div>
+            <!-- search result -->
+            <div id="weather-info" class="weather-status text-white text-center">
+                <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+            </div>
 
     <!-- script -->
     <script src="apps.js"></script>
