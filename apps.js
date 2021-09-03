@@ -1,43 +1,40 @@
-const searchWeather = async () => {
-    const searchField = document.getElementById('input-field');
-    const searchText = searchField.value;
-    searchField.value = '';
-    if (searchText == '') {
+const API_key = `2a5e293857f34bb3e0608f394f7b6a4c`;
+const searchWeather = () => {
+    const city = document.getElementById('city-name').value;
+    document.getElementById('city-name').value = '';
+    /* if (city == '') {
         document.getElementById('error').innerText = 'search field should not me empty';
         document.getElementById('weather-info').innerText = '';
         return;
+
     }
     document.getElementById('error').innerText = '';
-    document.getElementById('weather-info').innerText = '';
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${searchText}&appid=0c4ef1b4f6592cb29a883e80055fa44a&units=metric`;
+    document.getElementById('weather-info').innerText = ''; */
+
+    /* const url = `api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}`; 
+    0c4ef1b4f6592cb29a883e80055fa44a*/
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=2a5e293857f34bb3e0608f394f7b6a4c&units=metric`;
+    //inside div
+    /* <img src="http://openweathermap.org/img/wn/${location.weather[0].icon}@2x.png"> */
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayWeather(data))
 
 
-    const res = await fetch(url);
-    const data = await res.json();
-
-    displayWeather(data);
+}
+const setInnerText = (id, text) => {
+    document.getElementById(id).innerText = text;
 }
 
+const displayWeather = temperature => {
+    setInnerText('city', temperature.name);
+    setInnerText('temperature', temperature.main.temp);
+    setInnerText('condition', temperature.weather[0].main);
+    const url = `http://openweathermap.org/img/wn/${temperature.weather[0].icon}@2x.png`;
+    const imageIcon = document.getElementById('weather-icon');
+    imageIcon.setAttribute('src', url);
 
-const displayWeather = location => {
-    console.log(location);
-    const weatherContainer = document.getElementById('weather-info');
-    if (location.cod == 404) {
-        document.getElementById('error').innerText = 'Result not found';
-        return;
-    }
-    const div = document.createElement('div');
 
-    div.innerHTML = `
-    <h3>${location.name}</h3>
-    <h3>${location.sys.country}</h3>
-    <img src="http://openweathermap.org/img/wn/${location.weather[0].icon}@2x.png">
-    <h2><span>${location.main.temp}</span>&deg;C</h2>
-    		<p>${location.weather[0].main} <i>(${location.weather[0].description})</i></p>
-            <p>Humidity <b>${location.main.feels_like}</p>   
-    `;
-
-    weatherContainer.appendChild(div);
 }
 
 /* // convert unix time to local format

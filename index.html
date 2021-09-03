@@ -23,7 +23,7 @@
         <div class="col-md-6 m-auto py-5">
             <!-- search input -->
             <div class="input-group mb-3">
-                <input id="input-field" type="text" class="form-control" placeholder="Enter a location for Weather ...">
+                <input id="city-name" type="text" class="form-control" placeholder="Enter a location for Weather ...">
                 <div class="input-group-append">
                     <button onclick="searchWeather()" type="button" class="btn btn-danger">Search</button>
                 </div>
@@ -33,7 +33,10 @@
             <div id="error"></div>
             <!-- search result -->
             <div id="weather-info" class="weather-status text-white text-center">
-                <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+                <img id="weather-icon" src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+                <h1 id="city">Dhaka</h1>
+                <h3><span id="temperature">38.06</span>&deg;C</h3>
+                <h1 id="condition" class="lead">clouds</h1>
             </div>
 
     <!-- script -->
